@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>增加节点</title>
+	<script type="text/javascript">
+		function addPic(){
+			var img = document.createElement("img");//创建图片节点
+			img.setAttribute("src","images/newimg.jpg");//设置图片的src属性值
+
+			var fruitImg = document.getElementById("sixty1");
+			document.body.insertBefore(img,fruitImg);
+		}
+
+		function copyPic(){
+			var fruitImg = document.getElementById("sixty1");
+			var cloneImg = fruitImg.cloneNode(false);//浅克隆
+			document.body.appendChild(cloneImg);
+		}
+	</script>
+</head>
+
+<body>
+	<h2>喜欢的水果</h2>
+	<input id="b1" type="button" value="增加一幅图片" onclick="addPic()"/>
+	<input id="b2" type="button" value="复制原图" onclick="copyPic()"/><br />
+
+	 <img src="images/sixty1.jpg" id="sixty1" alt="水果"/>
+	<img src="images/sixty2.jpg" id="sixty2" alt="果篮" />
+
+</body>
+</html>

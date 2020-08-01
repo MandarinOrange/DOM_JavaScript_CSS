@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>根据层次关系查找节点</title>
+  <script type="text/javascript" src="node.js"></script>
+  <script type="text/javascript">
+    function showText(){
+      var table = document.getElementById("myTable");//获取table节点
+      var name = table.lastChild.lastChild.firstChild.innerHTML;
+      alert(name);
+    }
+
+    window.onload = function(){
+      var b = document.getElementById("myBody");
+      clearWhitespace(b);//清空节点
+    }
+  </script>
+</head>
+
+<body id="myBody">
+<table width="200" border="1" id="myTable">
+  <thead>
+    <tr>
+      <td>姓名</td>
+      <td>课程</td>
+      <td>成绩</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>欧阳兰</td>
+      <td>语文</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <td>白杨</td>
+      <td>数学</td>
+      <td>96</td>
+    </tr>
+  </tbody>
+</table>
+
+<input type="button" name="" value="最后一行第一个单元格内容" onclick="showText()" />
+</body>
+</html>

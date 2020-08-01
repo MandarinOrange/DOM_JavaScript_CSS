@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+    <title>操作表格</title>
+    <style type="text/css">
+        body {
+            font-size: 13px;
+            line-height: 25px;
+        }
+
+        table {
+            border-top: 1px solid #333;
+            border-left: 1px solid #333;
+            width: 300px;
+        }
+
+        td {
+            border-right: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+    </style>
+    <script type="text/javascript" src="node.js"></script>
+    <script type="text/javascript">
+        //清除空白节点
+        window.onload = function () {
+            clearWhitespace(document.body);
+        }
+        //添加行
+        function addRow(){
+            var newTr = document.createElement("tr");//创建一个行节点
+            var newTd1 = document.createElement("td");
+            var newTd2 = document.createElement("td");
+            newTd1.innerHTML = "幸福从天而降";
+            newTd2.innerHTML = "&yen;26.00";
+            newTd2.setAttribute("class","center");//加样式
+
+            newTr.appendChild(newTd1);//将td添加到tr中
+            newTr.appendChild(newTd2);
+
+            var table = document.getElementById("myTable");//获取表格节点
+            var lastTr = table.firstChild.lastChild;//获取最后一个tr
+            table.firstChild.insertBefore(newTr,lastTr);//table.firstChild获取的是tbody
+        }
+        //删除行
+        function delRow(){
+            var table = document.getElementById("myTable");
+            var trs = table.firstElementChild.getElementsByTagName("tr");
+            var delTr = trs[1];//获取第二行
+            table.firstChild.removeChild(delTr);
+        }
+        //修改标题样式
+        function updateTitle(){
+            var table = document.getElementById("myTable");
+            var firstTr = table.firstChild.firstChild;//获取第一行
+            firstTr.setAttribute("class","center");
+            firstTr.setAttribute("bgcolor","gray");
+        }
+        //复制行
+        function copyRow(){
+            var table = document.getElementById("myTable");
+            var lastTr = table.firstChild.lastChild;//获取最后一行
+            var cloneTr = lastTr.cloneNode(true);
+            table.firstChild.appendChild(cloneTr);
+        }
+        //替换最后一行
+        function replaceRow(){
+            var newTr = document.createElement("tr");//创建一个行节点
+            var newTd1 = document.createElement("td");
+            var newTd2 = document.createElement("td");
+            newTd1.innerHTML = "水浒传";
+            newTd2.innerHTML = "&yen;53.00";
+            newTd2.setAttribute("class","center");//加样式
+
+            newTr.appendChild(newTd1);//将td添加到tr中
+            newTr.appendChild(newTd2);
+
+            var table = document.getElementById("myTable");
+            var lastTr = table.firstChild.lastChild;//获取最后一行
+            table.firstChild.replaceChild(newTr,lastTr);//新行将最后一行替换
+        }
+    </script>
+
+</head>
+
+<body>
+<table border="0" cellspacing="0" cellpadding="0" id="myTable">
+    <tr>
+        <td>书名</td>
+        <td>价格</td>
+    </tr>
+    <tr>
+        <td>看得见风景的房间</td>
+        <td class="center">&yen;30.00</td>
+    </tr>
+    <tr>
+        <td>60个瞬间</td>
+        <td class="center">&yen;32.00</td>
+    </tr>
+</table>
+<input name="b1" type="button" value="增加一行" onclick="addRow()" />
+<input name="b2" type="button" value="删除第二行" onclick="delRow()" />
+<input name="b3" type="button" value="修改标题样式" onclick="updateTitle()" />
+<input name="b4" type="button" value="复制最后一行" onclick="copyRow()" />
+<input name="b4" type="button" value="替换最后一行" onclick="replaceRow()"/>
+</body>
+</html>

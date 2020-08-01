@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+    <title>随鼠标滚动的广告图片</title>
+    <style type="text/css">
+        #main {
+            text-align: center;
+        }
+
+        #adver {
+            position: absolute;
+            left: 50px;
+            top: 30px;
+            z-index: 2;
+        }
+    </style>
+    <script type="text/javascript">
+        var initTop;//广告div初始的top
+        var adv;//广告div
+        function getInitTop(){
+            adv = document.getElementById("adver");//获取广告div节点
+            if(adv.currentStyle){//IE浏览器
+                initTop = adv.currentStyle.top;
+            }else{//火狐、谷歌浏览器....
+                initTop = document.defaultView.getComputedStyle(adv,null).top;
+            }
+            initTop = parseInt(initTop);//去除后面的px
+        }
+
+        //浏览器滚动条滚动时触发
+        window.onscroll= function(){
+            var sTop;//滚动条滚动的距离
+            if(document.body.scrollTop){//谷歌浏览器
+                sTop = document.body.scrollTop;
+            }else{//火狐、IE....
+                sTop = document.documentElement.scrollTop;
+            }
+            adv.style.top = initTop+sTop+"px";
+        }
+    </script>
+</head>
+<body onload="getInitTop()">
+    <div id="adver" class="adver"><img src="images/adv.jpg"/></div>
+    <div id="main"><img src="images/main1.jpg"/><img src="images/main2.jpg"/><img src="images/main3.jpg"/></div>
+</body>
+</html>
